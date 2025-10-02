@@ -1,0 +1,85 @@
+#!/bin/zsh
+# =============================================================================
+# 🚀 ZSH ALIASES - Personal Aliases Configuration
+# =============================================================================
+# Author: Juan Herrera
+# Description: Collection of useful aliases for development and productivity
+# =============================================================================
+
+# =============================================================================
+# 📝 ZSH CONFIGURATION
+# =============================================================================
+
+# Environment variables
+export EDITOR="cursor --wait"           # Set Cursor as default editor
+export GIT_EDITOR="nano"                # Set nano as Git editor
+
+alias zshrc="$EDITOR ~/.zshrc"          # Edit zsh configuration file
+alias srcz="source ~/.zshrc"            # Reload zsh configuration
+
+# =============================================================================
+# 🔧 GIT ALIASES
+# =============================================================================
+
+# Git push and pull functions
+cgp() {
+  git push origin "$GIT_PREFERRED_BRANCH"
+}
+
+cgpf() {
+  git push --force origin "$GIT_PREFERRED_BRANCH"
+}
+
+cgpm() {
+  git pull --autostash --progress --rebase --stat origin "$GIT_PREFERRED_MAIN_BRANCH"
+}
+
+alias dpg="cgpm && cgp"                                               # Combined pull and push
+
+# Git branch management functions
+change-preferred-branch() {
+  export GIT_PREFERRED_BRANCH="$1"
+  echo "Preferred branch set to: $GIT_PREFERRED_BRANCH"
+}
+
+change-preferred-main-branch() {
+  export GIT_PREFERRED_MAIN_BRANCH="$1"
+  echo "Preferred main branch set to: $GIT_PREFERRED_MAIN_BRANCH"
+}
+
+alias cpb="change-preferred-branch"                                   # Change preferred branch
+alias cpmb="change-preferred-main-branch"                            # Change preferred main branch
+
+# =============================================================================
+# 📁 NAVIGATION AND FILES
+# =============================================================================
+
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
+alias cdw="cd ~/Development"                                          # Go to development directory
+
+# =============================================================================
+# 🧹 CLEANUP AND SYSTEM COMMANDS
+# =============================================================================
+
+alias cls="clear"                                                     # Clear screen
+alias rm="rm -iv"                                                     # Remove with interactive confirmation
+alias rma="rm -Iv"                                                    # Remove multiple files with confirmation
+alias mv="mv -i"                                                      # Move with confirmation
+alias cp="cp -i"                                                      # Copy with confirmation
+alias rmdir="rm -riv"                                                 # Remove directory with confirmation
+alias rmadir="rm -rIv"                                                # Remove multiple directories with confirmation
+
+# =============================================================================
+# 🎯 ADDITIONAL ALIASES (Add new aliases here)
+# =============================================================================
+
+# =============================================================================
+# 📋 USAGE NOTES
+# =============================================================================
+# To use these aliases:
+# 1. Make sure this file is included in your ~/.zshrc
+# 2. Run 'source ~/.zshrc' or restart your terminal
+# 3. Aliases will be available immediately
+# =============================================================================
