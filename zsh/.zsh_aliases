@@ -27,7 +27,7 @@ dpg() {
 }                                           
 
 # Git aliases
-alias dpg="cgpm && cgp"
+alias dpg="cgpm && cgpf"
 alias cpb="change-preferred-branch"
 alias cpmb="change-preferred-main-branch"
 
