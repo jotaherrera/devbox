@@ -4,8 +4,6 @@
 # 🌍 Environment
 export EDITOR="cursor --wait"
 export GIT_EDITOR="nano"
-export GIT_PREFERRED_BRANCH="jotaherrera"
-export GIT_PREFERRED_MAIN_BRANCH="trunk"
 
 # ⚙️ ZSH
 alias zshrc="$EDITOR ~/.zshrc"
@@ -13,29 +11,20 @@ alias srcz="source ~/.zshrc"
 
 # 🔧 Git functions
 cgp() {
-  git push origin "$GIT_PREFERRED_BRANCH"
+  git push origin "$1"
 }
 
 cgpf() {
-  git push --force origin "$GIT_PREFERRED_BRANCH"
+  git push --force origin "$1"
 }
 
 cgpm() {
-  git pull --autostash --progress --rebase --stat origin "$GIT_PREFERRED_MAIN_BRANCH"
+  git pull --autostash --progress --rebase --stat origin "$1"
 }
 
-alias dpg="cgpm && cgp"                                              
-
-# Git branch management functions
-change-preferred-branch() {
-  export GIT_PREFERRED_BRANCH="$1"
-  echo "Preferred branch set to: $GIT_PREFERRED_BRANCH"
-}
-
-change-preferred-main-branch() {
-  export GIT_PREFERRED_MAIN_BRANCH="$1"
-  echo "Preferred main branch set to: $GIT_PREFERRED_MAIN_BRANCH"
-}
+dpg() {
+  cgpm "$1" && cgp "$1"
+}                                           
 
 # Git aliases
 alias dpg="cgpm && cgp"
